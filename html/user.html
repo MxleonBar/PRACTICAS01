@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 02 : Servicio TODO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <center>
+            <h1>Practica 02 Consume servicios</h1>
+            <h2>{JSON}</h2>
+            <hr>
+        </center>
+    </header>
+    <section>
+            <center>
+            <label for="">USER</label>
+            <input type="text" name="" id="txtUser" placeholder="USER">
+            <label for="">ID</label>
+            <input type="text" name="" id="txtId" placeholder="ID">
+            <label for="">TITLE</label>
+            <input type="text" name="" id="txtTitle" placeholder="TITLE">
+            <label for="">COMPLETED</label>
+            <input type="text" name="" id="txtCompleted" placeholder="COMPLETED">
+
+            <button id="btnAgregar" class="btn btn-primary">Agregar</button>
+
+            </center>
+            <!--Mostrar el error-->
+            <p id="pError" style="color:red; text-align: center;">
+                *
+            </p>
+    <section>
+        <table id="tabla" class="table table-hover">
+            <thead>
+                <th>USER</th>
+                <th>ID</th>
+                <th>TITLE</th>
+                <th>COMPLETED</th>
+            </thead>
+
+            <tbody id="tbody">
+                <!-- Renglones dinamicos -->   
+                 
+            </tbody>
+    </section>
+</body>
+<script src="/js/user.js"></script>
+</html>

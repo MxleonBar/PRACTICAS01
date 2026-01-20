@@ -9,90 +9,97 @@ const tbody = document.getElementById('tbody');
 
 const pError = document.getElementById('pError');
 
-
-
-// declaracion de funciones
+//Establecer funciones
+    //Funcion Agregar Usuario
 function agregar(){
     //validar
-    let id = txtId.value;
-    let nombre = txtNombre.value;
-    let escuela = txtEscuela.value;
+    let USER = txtUser.value;
+    let ID = txtId.value;
+    let TITLE = txtTitle.value; //Pregunta el titulo
+    let COMPLETED = txtCompleted.value; //Preguntar si es true o false
 
-    if(!id || !nombre || !escuela){
+    if(!USER || !ID || !TITLE || !COMPLETED){
         mostrarError("faltaron datos por capturar", 5000);
         return;
     }
-    
-    //agregar a la tabla
 
+    //agregar a la tabla
     const fila = document.createElement('tr');
-    
+
     const c1 = document.createElement('td');
-        c1.textContent = id;
+        c1.textContent = USER;
         fila.appendChild(c1);
 
     const c2 = document.createElement('td');
-        c2.textContent = nombre;
+        c2.textContent = ID;
         fila.appendChild(c2);
 
     const c3 = document.createElement('td');
-        c3.textContent = escuela;
+        c3.textContent = TITLE;
         fila.appendChild(c3);
 
-      tbody.appendChild(fila);
-      tabla.appendChild(tbody);
+    const c4 = document.createElement('td');
+        c4.textContent = COMPLETED;
+        fila.appendChild(c4);
+    //Agregar la fila al cuerpo de la tabla
+    tbody.appendChild(fila);
+    //Agregar el cuerpo a la tabla
+    tabla.appendChild(tbody);
 
     //Limpiar los campos
+    txtUser.value = "";
     txtId.value = "";
-    txtEscuela.value = "";
-    txtNombre.value = "";
-
+    txtTitle.value = "";
+    txtCompleted.value = "";
 }
 
+    //mostrar error
 function mostrarError(mensaje, tiempo){
     pError.textContent = mensaje;
-    
-    //callback: funcion que reciba otra funcion, y un valor entero = tiempo
     setTimeout(() => {
         pError.textContent = "*";//Es para limpiar el mensaje de error
     }, tiempo);
 }
 
+    //Peticion
 function peticion(){
-    let url = "../alumnos.json";
+    fetch('')//URL de la API
     fetch(url, {method:'get'})
     .then(response => response.json())
-    .then(data => {mostrarAlumnos(data)})
+    .then(data => {mostrarUsuario(data)})
     .catch(error => {mostrarError(error, 5000)});
 }
-
-function mostrarAlumnos(data){
-    data.forEach(Alumno => {
-
+    //Mostrar Usuarios
+function mostrarUsuario(data){
+    data.forEach(Usuario => {
         //Agrega informacion de manera dinamica a la tabla
         //agrega a la tabla
-
         const fila = document.createElement('tr');
-        
+
         const c1 = document.createElement('td');
-            c1.textContent = Alumno.id;
+            c1.textContent = Usuario.USER;
             fila.appendChild(c1);
 
         const c2 = document.createElement('td');
-            c2.textContent = Alumno.nombre;
+            c2.textContent = Usuario.ID;
             fila.appendChild(c2);
 
         const c3 = document.createElement('td');
-            c3.textContent = Alumno.escuela;
+            c3.textContent = Usuario.TITLE;
             fila.appendChild(c3);
-        
-        tbody.appendChild(fila);
-    });
 
+        const c4 = document.createElement('td');
+            c4.textContent = Usuario.COMPLETED;
+            fila.appendChild(c4);
+
+        //Agregar la fila al cuerpo de la tabla
+        tbody.appendChild(fila);
+       
+    });
+     //Agregar el cuerpo a la tabla
     tabla.appendChild(tbody);
 }
 
-//Seccion de eventos
-
-btnAgregar.addEventListener('click', agregar);  
+//Agregar Eventos
+btnAgregar.addEventListener('click', agregar);
 document.addEventListener('DOMContentLoaded', peticion);//Cuando el documento se haya cargado, se ejecuta la funcion peticion
