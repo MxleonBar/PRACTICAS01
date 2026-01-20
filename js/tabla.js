@@ -56,4 +56,41 @@ function mostrarError(mensaje, tiempo){
     }, tiempo);
 }
 
-btnAgregar.addEventListener('click', agregar);
+function peticion(){
+    let url = "../alumnos.json";
+    fetch(url, {method:'get'})
+    .then(response => response.json())
+    .then(data => {mostrarAlumnos(data)})
+    .catch(error => {mostrarError(error, 5000)});
+}
+
+function mostrarAlumnos(data){
+    data.forEach(Alumno => {
+
+        //Agregar informacion de manera dinamica a la tabla
+        //agregar a la tabla
+
+        const fila = document.createElement('tr');
+        
+        const c1 = document.createElement('td');
+            c1.textContent = Alumno.id;
+            fila.appendChild(c1);
+
+        const c2 = document.createElement('td');
+            c2.textContent = Alumno.nombre;
+            fila.appendChild(c2);
+
+        const c3 = document.createElement('td');
+            c3.textContent = Alumno.escuela;
+            fila.appendChild(c3);
+        
+        tbody.appendChild(fila);
+    });
+
+    tabla.appendChild(tbody);
+}
+
+//Seccion de eventos
+
+btnAgregar.addEventListener('click', agregar);  
+document.addEventListener('DOMContentLoaded', peticion);//Cuando el documento se haya cargado, se ejecuta la funcion peticion
