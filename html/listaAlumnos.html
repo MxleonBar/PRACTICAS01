@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,17 +22,18 @@
             <center>
             <label for="">ID</label>
             <input type="text" name="" id="txtId" placeholder="ID">
-
             <label for="">Nombre</label>
             <input type="text" name="" id="txtNombre" placeholder="Nombre">
-
             <label for="">Escuela</label>
             <input type="text" name="" id="txtEscuela" placeholder="Escuela">
-
             <button id="btnAgregar" class="btn btn-primary">Agregar</button>
-        </center>
+
+            </center>
+            <!--Mostrar el error-->
+            <p id="pError" style="color:red; text-align: center;">*</p>
         </section>
         <hr>
+        
         <section>
             <table id="tabla" class="table table-hover">
                 <thead>

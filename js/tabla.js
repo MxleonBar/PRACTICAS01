@@ -7,6 +7,8 @@ const btnAgregar = document.getElementById('btnAgregar');
 const tabla = document.getElementById('tabla');
 const tbody = document.getElementById('tbody');
 
+const pError = document.getElementById('pError'); 
+
 // declaracion de funciones
 function agregar(){
     //validar
@@ -15,7 +17,7 @@ function agregar(){
     let escuela = txtEscuela.value;
 
     if(!id || !nombre || !escuela){
-        alert("faltaron datos por capturar");
+        mostrarError("faltaron datos por capturar", 5000);
         return;
     }
     
@@ -43,6 +45,15 @@ function agregar(){
     txtEscuela.value = "";
     txtNombre.value = "";
 
+}
+
+function mostrarError(mensaje, tiempo){
+    pError.textContent = mensaje;
+    
+    //callback: funcion que reciba otra funcion, y un valor entero = tiempo
+    setTimeout(() => {
+        pError.textContent = "*";//Es para limpiar el mensaje de error
+    }, tiempo);
 }
 
 btnAgregar.addEventListener('click', agregar);
