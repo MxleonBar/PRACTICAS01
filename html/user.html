@@ -23,16 +23,16 @@
             <input type="text" name="" id="txtId" placeholder="ID">
             <label for="">TITLE</label>
             <input type="text" name="" id="txtTitle" placeholder="TITLE">
-            <label for="">COMPLETED</label>
-            <input type="text" name="" id="txtCompleted" placeholder="COMPLETED">
+            <label for="chkCompleted">COMPLETED</label>
+            <input type="checkbox" id="chkCompleted">
 
             <button id="btnAgregar" class="btn btn-primary">Agregar</button>
 
             </center>
             <!--Mostrar el error-->
-            <p id="pError" style="color:red; text-align: center;">
-                *
-            </p>
+            <div class="alert alert-danger" role="alert" id="pError" style="display:none;">
+            A simple danger alert—check it out!
+            </div>
     <section>
         <table id="tabla" class="table table-hover">
             <thead>

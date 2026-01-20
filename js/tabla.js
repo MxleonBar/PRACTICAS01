@@ -49,12 +49,12 @@ function agregar(){
 
 }
 
+    //mostrar error
 function mostrarError(mensaje, tiempo){
     pError.textContent = mensaje;
-    
-    //callback: funcion que reciba otra funcion, y un valor entero = tiempo
+    pError.style.display = 'block';
     setTimeout(() => {
-        pError.textContent = "*";//Es para limpiar el mensaje de error
+        pError.style.display = 'none';
     }, tiempo);
 }
 

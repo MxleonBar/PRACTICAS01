@@ -1,7 +1,8 @@
 //Declaracion de Objetos
+const txtUser = document.getElementById('txtUser');
 const txtId = document.getElementById('txtId');
-const txtNombre = document.getElementById('txtNombre');
-const txtEscuela = document.getElementById('txtEscuela');
+const txtTitle = document.getElementById('txtTitle');
+const chkCompleted = document.getElementById('chkCompleted');
 
 const btnAgregar = document.getElementById('btnAgregar');
 const tabla = document.getElementById('tabla');
@@ -15,10 +16,10 @@ function agregar(){
     //validar
     let USER = txtUser.value;
     let ID = txtId.value;
-    let TITLE = txtTitle.value; //Pregunta el titulo
-    let COMPLETED = txtCompleted.value; //Preguntar si es true o false
+    let TITLE = txtTitle.value;
+    let COMPLETED = chkCompleted.checked;
 
-    if(!USER || !ID || !TITLE || !COMPLETED){
+    if(!USER || !ID || !TITLE){
         mostrarError("faltaron datos por capturar", 5000);
         return;
     }
@@ -39,7 +40,7 @@ function agregar(){
         fila.appendChild(c3);
 
     const c4 = document.createElement('td');
-        c4.textContent = COMPLETED;
+        c4.textContent = COMPLETED ? 'Sí' : 'No';
         fila.appendChild(c4);
     //Agregar la fila al cuerpo de la tabla
     tbody.appendChild(fila);
@@ -50,23 +51,24 @@ function agregar(){
     txtUser.value = "";
     txtId.value = "";
     txtTitle.value = "";
-    txtCompleted.value = "";
+    chkCompleted.checked = false;;
 }
 
     //mostrar error
 function mostrarError(mensaje, tiempo){
     pError.textContent = mensaje;
+    pError.style.display = 'block';
     setTimeout(() => {
-        pError.textContent = "*";//Es para limpiar el mensaje de error
+        pError.style.display = 'none';
     }, tiempo);
 }
 
     //Peticion
 function peticion(){
-    fetch('')//URL de la API
-    fetch(url, {method:'get'})
+    fetch('https://jsonplaceholder.typicode.com/todos')//URL de la API
     .then(response => response.json())
-    .then(data => {mostrarUsuario(data)})
+    .then(data => {mostrarUsuario(data);
+    })
     .catch(error => {mostrarError(error, 5000)});
 }
     //Mostrar Usuarios
@@ -77,19 +79,19 @@ function mostrarUsuario(data){
         const fila = document.createElement('tr');
 
         const c1 = document.createElement('td');
-            c1.textContent = Usuario.USER;
+            c1.textContent = Usuario.userId;
             fila.appendChild(c1);
 
         const c2 = document.createElement('td');
-            c2.textContent = Usuario.ID;
+            c2.textContent = Usuario.id;
             fila.appendChild(c2);
 
         const c3 = document.createElement('td');
-            c3.textContent = Usuario.TITLE;
+            c3.textContent = Usuario.title;
             fila.appendChild(c3);
 
         const c4 = document.createElement('td');
-            c4.textContent = Usuario.COMPLETED;
+            c4.textContent = Usuario.completed ? 'Sí' : 'No';
             fila.appendChild(c4);
 
         //Agregar la fila al cuerpo de la tabla
