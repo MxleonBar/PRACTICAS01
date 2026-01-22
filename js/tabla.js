@@ -58,13 +58,40 @@ function mostrarError(mensaje, tiempo){
     }, tiempo);
 }
 
-function peticion(){
+async function peticion(){
+
     let url = "../alumnos.json";
-    fetch(url, {method:'get'})
-    .then(response => response.json())
-    .then(data => {mostrarAlumnos(data)})
-    .catch(error => {mostrarError(error, 5000)});
+
+    try{
+        const response = await fetch(url, {method: 'get'});
+        const data = await response.json();
+        mostrarAlumnos(data);
+
+    } catch(error){ mostrarError(error, 5000);}
+
 }
+
+    //esta funcion tambien va a trarar de dibujar en la tabla
+function otraTarea(){
+    mostrarError("iniciando otra tarea", 3000);
+    
+    //agrgar 40 filas a la tabla
+    for(let con = 0; con<40; con++){
+        const fila = document.createElement('tr');
+
+        const c1 = document.createElement('td');
+        c1.textContent = con;
+        fila.appendChild(c1);
+        tbody.appendChild(fila);
+    }  
+    tabla.appendChild(tbody);  
+}
+
+//Funcion principal que va controlar los elementos
+async function main(){
+    await peticion();
+    otraTarea();
+}    
 
 function mostrarAlumnos(data){
     data.forEach(Alumno => {
@@ -95,4 +122,4 @@ function mostrarAlumnos(data){
 //Seccion de eventos
 
 btnAgregar.addEventListener('click', agregar);  
-document.addEventListener('DOMContentLoaded', peticion);//Cuando el documento se haya cargado, se ejecuta la funcion peticion
+document.addEventListener('DOMContentLoaded', main);//Cuando el documento se haya cargado, se ejecuta la funcion main
