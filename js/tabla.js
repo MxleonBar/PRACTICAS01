@@ -67,18 +67,19 @@ async function peticion(){
         const data = await response.json();
         mostrarAlumnos(data);
 
-    } catch(error){ mostrarError(error, 5000);}
+    } catch(error){ mostrarError(error, 5000);}//implementar mostrar leyenda
 
 }
 
     //esta funcion tambien va a trarar de dibujar en la tabla
 function otraTarea(){
-    mostrarError("iniciando otra tarea", 3000);
+    mostrarError("iniciando otra tarea", 3000);//implementar un mensaje propio
     
     //agrgar 40 filas a la tabla
     for(let con = 0; con<40; con++){
-        const fila = document.createElement('tr');
 
+        const fila = document.createElement('tr');
+        
         const c1 = document.createElement('td');
         c1.textContent = con;
         fila.appendChild(c1);
