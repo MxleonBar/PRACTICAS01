@@ -68,21 +68,24 @@ async function buscar(){
         peticion('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic');
     }else if(opcion === 'Alcoholicas'){
         peticion('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic');
-    }else if(opcion === 'Todas'){
-        //Primera peticion - Alcoholicas
-        const response1 = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic');
-        const data1 = await response1.json();//Hacer esperar a la funcion
-        const bebidasAlcoholicas = data1.drinks;//Toma el arreglo que arroja la API y lo guarda en una variable
-        
-        //Segunda peticion - No Alcoholicas
-        const response2 = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic');
-        const data2 = await response2.json();//Hacer esperar a la funcion
-        const bebidasNoAlcoholicas = data2.drinks;//Toma el arreglo que arroja la API y lo guarda en una variable
-        
-        //Para mostrar todas la bebidas se combinan los dos arreglos bebidasAlcoholicas && bebidasNoAlcoholicas
-        const todasLasBebidas = [...bebidasAlcoholicas, ...bebidasNoAlcoholicas];
-        limpiarTabla();
-        listarBebidas(todasLasBebidas);
+    }else if(opcion === 'Todas'){//Se hacen la peticiones por separado y luego se combina la data
+        try{
+            //Primera peticion - Alcoholicas
+            const response1 = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic');
+            const data1 = await response1.json();//Hacer esperar a la funcion esperando que se cumpla la promesa
+            const bebidasAlcoholicas = data1.drinks;//Toma el arreglo que arroja la API y lo guarda en una variable
+            
+            //Segunda peticion - No Alcoholicas
+            const response2 = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic');
+            const data2 = await response2.json();//Hacer esperar a la funcion esperando que se cumpla la promesa
+            const bebidasNoAlcoholicas = data2.drinks;//Toma el arreglo que arroja la API y lo guarda en una variable
+            
+            //Para mostrar todas la bebidas se combinan los dos arreglos bebidasAlcoholicas && bebidasNoAlcoholicas
+            const todasLasBebidas = [...bebidasAlcoholicas, ...bebidasNoAlcoholicas];
+            limpiarTabla();
+            listarBebidas(todasLasBebidas);
+
+        }catch(error){mostrarError(error, 3000);}
     }else{
         mostrarError('Selecciona una opción válida', 2000);
     }

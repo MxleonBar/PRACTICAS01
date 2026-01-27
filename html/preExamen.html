@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre Examen, peticion por index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container" style="background-color: beige; width: 300px;">
+            <center>
+            <h1 style="color: black;">Vendedores</h1>
+            <hr>
+        </center>
+        </div>
+    </header>
+    
+    <section>
+
+        <div class="card mx-auto" id="cardInput" style="width: 300px;">
+            <center>
+            <label for="txtId">ID</label>
+            <br><br>
+            <input type="number" id="txtId" placeholder="Ingrese el ID">
+            <br><br>
+            <button id="btnMostrar" class="btn btn-primary">Mostrar</button>
+            </center>
+        </div>
+        <br>
+        <!--musstra el error con Bootstrap -->
+        <div class="alert alert-danger mx-auto" role="alert" id="pError" style="display:none; width: 300px;">
+            Párrafo mostrar Error, o no encontró el ID
+        </div>
+
+    </section>
+    
+    <section>
+            <div class="card mx-auto" id="cardResultados" style="width: 300px;">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nombre</label>
+                    <p class="form-control" id="nombre"></p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nombre Usuario</label>
+                    <p class="form-control" id="username"></p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Email</label>
+                    <p class="form-control" id="email"></p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Domicilio</label>
+                    <p class="form-control" id="domicilio"></p>
+                </div>
+                <div class="mb-3">
+                    <p class="form-control" id="codigoPostal"></p>
+                </div>
+                <div class="mb-3">
+                    <p class="form-control" id="ciudad"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="../js/pre.js"></script>
+</body>
+</html>
